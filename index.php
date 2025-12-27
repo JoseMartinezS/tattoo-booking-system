@@ -1,3 +1,6 @@
+<?php 
+// index.php 
+// ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,20 +14,7 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="container header-inner" role="navigation" aria-label="Navegación principal">
-      <div class="logo"><img src="images/logomiguel.jpg" alt=""></div>
-      <nav>
-        <ul>
-          <li><a href="#sobre-nosotros">Cotiza tu tatuaje</a></li>
-          <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
-          <li><a href="#portafolio">Portafolio</a></li>
-          <li><a href="#contacto">Contáctanos</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <?php include 'includes/header.php'; ?>
 
   <!-- Sobre nosotros -->
   <section id="sobre-nosotros">
@@ -100,16 +90,6 @@
 </section>
 
 
-  <!-- Footer -->
-  <footer>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-      <div>© 2025 Estudio Tatuajes</div>
-      <div class="socials" aria-label="Redes sociales">
-        <a href="https://www.instagram.com/miguelreyna_/" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="Facebook">Facebook</a>
-      </div>
-    </div>
-  </footer>
-    <script src="/js/script.js"></script>
+  <?php include 'includes/footer.php'; ?>
 </body>
 </html>
