@@ -1,0 +1,199 @@
+/* --------- Reset & base --------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: #111;
+      background: #fff;
+      line-height: 1.55;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* --------- Layout --------- */
+    .container { width: 90%; max-width: 1080px; margin: 0 auto; }
+
+    /* --------- Header --------- */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: rgba(255,255,255,0.8);
+      border-bottom: 1px solid #eee;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+    }
+    .logo { 
+        font-weight: 700; letter-spacing: 0.5px; 
+    }
+    nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; }
+    nav a { padding: 6px 10px; border-radius: 6px; }
+    nav a:hover, nav a:focus { background: #f3f3f3; outline: none; }
+
+    /* --------- Section titles --------- */
+    .section-title {
+      font-size: 1.8rem; margin: 28px 0 12px; font-weight: 700;
+    }
+    .muted { color: #555; }
+
+    /* --------- Sobre nosotros --------- */
+    #sobre-nosotros { padding: 28px 0 18px; }
+    .about {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px;
+    }
+    .about p { margin: 0 0 12px; }
+    .about .tagline {
+      font-size: 1.2rem; font-weight: 600; margin: 0 0 10px;
+    }
+    .about .figure {
+      border: 1px solid #eee; border-radius: 12px; overflow: hidden;
+    }
+    @media (max-width: 860px) {
+      .about { grid-template-columns: 1fr; }
+    }
+
+    /* --------- Portafolio --------- */
+    #portafolio { padding: 20px 0 10px; }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .portfolio-item {
+      aspect-ratio: 1 / 1; /* cuadrado estilo Instagram */
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      background: #f6f6f6;
+    }
+    .portfolio-item img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .portfolio-item .caption {
+      position: absolute; inset: auto 0 0 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+      color: #fff; padding: 10px; font-size: 0.9rem;
+      opacity: 0; transition: opacity 0.2s ease;
+    }
+    .portfolio-item:hover .caption { opacity: 1; }
+
+    /* Una sola imagen: grande y centrada */
+    .single .portfolio-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .single .portfolio-item {
+      aspect-ratio: auto;
+      height: auto;
+      border-radius: 12px;
+    }
+    .single .portfolio-item img {
+      height: auto; object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+
+    /* --------- Contacto --------- */
+    #contacto {
+      padding: 28px 0 40px;
+      background: #111; color: #fff; border-top: 1px solid #222;
+    }
+    .contact-card {
+      border: 1px solid #222; border-radius: 12px;
+      padding: 18px; background: #0d0d0d;
+    }
+    .contact-card label { display: block; font-size: 0.9rem; margin-bottom: 6px; color: #ddd; }
+    .contact-card input, .contact-card textarea {
+      width: 100%; padding: 10px 12px; border-radius: 8px;
+      border: 1px solid #333; background: #141414; color: #fff;
+      outline: none;
+    }
+    .contact-card input::placeholder, .contact-card textarea::placeholder { color: #888; }
+    .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 720px) { .contact-row { grid-template-columns: 1fr; } }
+    .contact-card textarea { min-height: 110px; resize: vertical; }
+    .btn {
+      display: inline-block; margin-top: 10px;
+      background: #fff; color: #111; border: none;
+      padding: 10px 14px; border-radius: 8px; font-weight: 600;
+      cursor: pointer;
+    }
+    .btn:hover { background: #f3f3f3; }
+
+    /* --------- Footer --------- */
+    footer { border-top: 1px solid #eee; color: #555; padding: 16px 0; }
+    .socials { display: flex; gap: 12px; }
+    .socials a { color: #777; }
+    .socials a:hover { color: #111; }
+
+    /* Portafolio grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.portfolio-item {
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background: #f6f6f6;
+}
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.portfolio-item .caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.portfolio-item:hover .caption { opacity: 1; }
+
+/* Carrusel dentro de un item */
+.carousel-inner {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.carousel-slide {
+  display: none;
+  height: 100%;
+}
+.carousel-slide.active {
+  display: block;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+.carousel-btn.prev { left: 8px; }
+.carousel-btn.next { right: 8px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
