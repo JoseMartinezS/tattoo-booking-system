@@ -5,7 +5,7 @@
 <header>
   <div class="container header-inner" role="navigation" aria-label="Navegación principal">
     <div class="logo">
-      <img src="images/logomiguel.jpg" alt="Logo Miguel">
+<img src="/web/Miguel/images/logomiguel.jpg" alt="Logo Miguel">
     </div>
     <nav>
       <ul>

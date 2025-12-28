@@ -11,4 +11,4 @@
       </div>
     </div>
   </footer>
-    <script src="js/script.js"></script>
+    <script src="/web/Miguel/js/script.js"></script>
