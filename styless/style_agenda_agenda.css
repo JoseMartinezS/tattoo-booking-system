@@ -1,0 +1,55 @@
+/* Contenedor del formulario de agenda */
+form#agendaForm {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Etiquetas */
+form#agendaForm label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Inputs */
+form#agendaForm input[type="text"],
+form#agendaForm input[type="email"],
+form#agendaForm input[type="date"],
+form#agendaForm input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+form#agendaForm input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Botón */
+form#agendaForm button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form#agendaForm button:hover {
+  background: #0056b3;
+}

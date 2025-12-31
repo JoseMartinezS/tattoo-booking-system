@@ -1,5 +1,8 @@
 <?php
 // agenda.php
+include '../includes/conexion.php';
+$stmt = $pdo->query("SELECT * FROM disponibilidad WHERE disponible = 1 ORDER BY fecha, hora");
+$slots = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -8,31 +11,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrar Agenda</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../styless/style_agenda_agenda.css">
 </head>
 <body>
 
   <?php include '../includes/header.php'; ?>
 
-  <body>
-   <form action="guardar_cita.php" method="POST">
+  <form id="agendaForm" action="guardar_cita.php" method="POST">
       <label for="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" required>
 
       <label for="email">Correo:</label>
       <input type="email" id="email" name="email" required>
 
-      <label for="fecha">Fecha:</label>
-      <input type="date" id="fecha" name="fecha" required>
-
-      <label for="hora">Hora:</label>
-      <input type="time" id="hora" name="hora" required>
+      <label for="slot">Selecciona fecha y hora:</label>
+      <select name="slot" id="slot" required>
+        <?php foreach ($slots as $slot): ?>
+          <option value="<?= $slot['id'] ?>">
+            <?= $slot['fecha'] ?> - <?= $slot['hora'] ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
 
       <button type="submit">Agendar cita</button>
-    </form>
-
-  </body>
+  </form>
 
   <?php include '../includes/footer.php'; ?>
-
 </body>
 </html>

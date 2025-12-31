@@ -1,0 +1,52 @@
+.mensaje-exito {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #fafafaff;
+      border: 2px solid #0f1f10ff;
+      border-radius: 8px;
+      font-size: 1.2em;
+      color: #333;
+    }
+    .mensaje-exito h2 {
+      color: #0f1f10ff;
+    }
+    .mensaje-exito a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .mensaje-exito a:hover {
+      background-color: #45a049;
+    }
+
+
+.mensaje-error {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #fafafaff;
+      border: 2px solid #0f1f10ff;
+      border-radius: 8px;
+      font-size: 1.2em;
+      color: #333;
+    }
+    .mensaje-error h2 {
+      color: #0f1f10ff;
+    }
+    .mensaje-error a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .mensaje-exito a:hover {
+      background-color: #45a049;
+    }

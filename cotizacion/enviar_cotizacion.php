@@ -45,10 +45,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><strong>Tamaño:</strong> $tamano</p>
             <p><strong>Ubicación:</strong> $ubicacion</p>
         ";
+        if(!empty($_FILES['imagen']['tmp_name'])) {
+            $mail->addAttachment($_FILES['imagen']['tmp_name'], $_FILES['imagen']['name']);
+        }
+
+        
 
         $mail->send();
-        echo "Tu cotización ha sido enviada correctamente.";
+        header("Location: cotizacion_enviada.php");
+        exit();
+        
     } catch (Exception $e) {
         echo "Error al enviar: {$mail->ErrorInfo}";
+
+        header("Location: cotizacion_error.php");
+        exit;
+
     }
 }

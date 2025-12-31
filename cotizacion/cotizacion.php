@@ -18,7 +18,7 @@
 
   <div class="cotizacion-container">
   <div class="form-section">
-    <form id="cotizacionForm" action="enviar_cotizacion.php" method="POST">
+<form id="cotizacionForm" action="enviar_cotizacion.php" method="POST" enctype="multipart/form-data">
       <label for="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" required>
 
@@ -33,6 +33,9 @@
 
       <label for="ubicacion">Ubicación en el cuerpo:</label>
       <input type="text" id="ubicacion" name="ubicacion">
+
+      <label for="imagen">Adjuntar imagen (opcional):</label>
+      <input type="file" id="imagen" name="imagen" accept="image/*">
 
       <button type="submit">Enviar cotización</button>
     </form>

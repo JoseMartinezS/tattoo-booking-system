@@ -1,24 +1,31 @@
 <?php
 // guardar_cita.php
-include '../includes/conexion.php'; // Incluimos la conexión
-include '../includes/conexion_correo.php'; // configuración de correo
+include '../includes/conexion.php';
+include '../includes/conexion_correo.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recibir datos del formulario
     $nombre = $_POST['nombre'] ?? null;
-    $email = $_POST['email'] ?? null;
-    $fecha = $_POST['fecha'] ?? null;
-    $hora = $_POST['hora'] ?? null;
+    $email  = $_POST['email'] ?? null;
+    $slotId = $_POST['slot'] ?? null;
 
-    // Como decidimos no usar descripcion en el formulario, la mandamos como NULL
     $descripcion = null;
 
     try {
-        // Preparar la consulta con parámetros seguros
+        // Obtener fecha y hora del slot seleccionado
+        $stmt = $pdo->prepare("SELECT fecha, hora FROM disponibilidad WHERE id = :id AND disponible = 1");
+        $stmt->execute([':id' => $slotId]);
+        $slot = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$slot) {
+            die("❌ El horario seleccionado ya no está disponible.");
+        }
+
+        $fecha = $slot['fecha'];
+        $hora  = $slot['hora'];
+
+        // Insertar cita
         $stmt = $pdo->prepare("INSERT INTO citas (nombre, email, fecha, hora, descripcion) 
                                VALUES (:nombre, :email, :fecha, :hora, :descripcion)");
-
-        // Ejecutar con los valores
         $stmt->execute([
             ':nombre' => $nombre,
             ':email' => $email,
@@ -27,26 +34,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ':descripcion' => $descripcion
         ]);
 
-        header("Location: cita_registrada.php");
-        exit();
-        // ... después del INSERT exitoso
+        // Marcar el slot como ocupado
+        $stmt = $pdo->prepare("UPDATE disponibilidad SET disponible = 0 WHERE id = :id");
+        $stmt->execute([':id' => $slotId]);
 
+        // Enviar correos
         $mail = crearMailer();
 
-        // Correo al cliente
+        // Cliente
         $mail->addAddress($email, $nombre);
         $mail->isHTML(true);
         $mail->Subject = 'Confirmación de cita';
         $mail->Body    = "Hola $nombre,<br>Tu cita fue registrada para el día <b>$fecha</b> a las <b>$hora</b>.<br>Miguel la confirmará pronto.";
         $mail->send();
 
-        // Correo a Miguel
+        // Miguel
         $mail->clearAddresses();
         $mail->addAddress('miguel@estudio-miguel.com', 'Miguel');
         $mail->Subject = 'Nueva cita registrada';
         $mail->Body    = "Nueva cita registrada:<br>Nombre: $nombre<br>Correo: $email<br>Fecha: $fecha<br>Hora: $hora";
         $mail->send();
 
+        header("Location: cita_registrada.php");
+        exit();
 
     } catch (PDOException $e) {
         echo "❌ Error al registrar la cita: " . $e->getMessage();
@@ -54,4 +64,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Acceso inválido.";
 }
-?>
