@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cita Registrada</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../styless/style_cita_registrada.css">
 </head>
 <body>
 
@@ -19,7 +20,7 @@
        Hemos enviado un correo de confirmación a tu dirección.  
        Miguel revisará tu solicitud y te notificará cuando la confirme.</p>
 
-    <a href="index.php" class="btn">Volver al inicio</a>
+    <a href="../index.php" class="btn">Volver al inicio</a>
   </main>
 
   <?php include '../includes/footer.php'; ?>

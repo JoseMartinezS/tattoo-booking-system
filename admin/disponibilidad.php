@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hora  = $_POST['hora'];
     $stmt = $pdo->prepare("INSERT INTO disponibilidad (fecha, hora) VALUES (:fecha, :hora)");
     $stmt->execute([':fecha' => $fecha, ':hora' => $hora]);
+
+    // Redirigir para limpiar el formulario y evitar duplicados al recargar 
+    header("Location: disponibilidad.php"); exit;
 }
 
 // Obtener todas las disponibilidades
@@ -27,6 +30,7 @@ $slots = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
   <?php include '../includes/header.php'; ?>
+  
   <main>
     <h1>Gestionar Disponibilidad</h1>
     <form method="POST">

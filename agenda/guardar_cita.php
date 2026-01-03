@@ -40,20 +40,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Enviar correos
         $mail = crearMailer();
+        $mail->charset = 'UTF-8';
+        $mail->Encoding = 'base64';
 
         // Cliente
         $mail->addAddress($email, $nombre);
         $mail->isHTML(true);
-        $mail->Subject = 'Confirmación de cita';
-        $mail->Body    = "Hola $nombre,<br>Tu cita fue registrada para el día <b>$fecha</b> a las <b>$hora</b>.<br>Miguel la confirmará pronto.";
+        $mail->Subject = 'Confirmación de cita - Estudio Miguel';
+        $mail->Body = "
+        <html>
+        <head>
+            <style>
+            body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; }
+            .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+            h2 { color: #007bff; }
+            p { color: #333; }
+            .footer { margin-top: 20px; font-size: 12px; color: #777; }
+            </style>
+        </head>
+        <body>
+            <div class='card'>
+            <h2>Hola $nombre,</h2>
+            <p>Tu cita fue registrada para el dia <b>".date("d/m/Y", strtotime($fecha))."</b> a las <b>".date("g:i A", strtotime($hora))."</b>.</p>
+            <p>Miguel la confirmara pronto.</p>
+            <div class='footer'>
+                <p>Estudio Miguel © ".date("Y")."</p>
+            </div>
+            </div>
+        </body>
+        </html>
+        ";
         $mail->send();
+
 
         // Miguel
         $mail->clearAddresses();
-        $mail->addAddress('miguel@estudio-miguel.com', 'Miguel');
+        $mail->addAddress('josedejesusmartinezsilva@gmail.com', 'Miguel');
         $mail->Subject = 'Nueva cita registrada';
-        $mail->Body    = "Nueva cita registrada:<br>Nombre: $nombre<br>Correo: $email<br>Fecha: $fecha<br>Hora: $hora";
+        $mail->Body = "
+        <html>
+        <body style='font-family: Arial, sans-serif;'>
+            <h3>Nueva cita registrada</h3>
+            <table border='1' cellpadding='8' cellspacing='0'>
+            <tr><td><b>Nombre</b></td><td>$nombre</td></tr>
+            <tr><td><b>Correo</b></td><td>$email</td></tr>
+            <tr><td><b>Fecha</b></td><td>".date("d/m/Y", strtotime($fecha))."</td></tr>
+            <tr><td><b>Hora</b></td><td>".date("g:i A", strtotime($hora))."</td></tr>
+            </table>
+        </body>
+        </html>
+        ";
         $mail->send();
+
 
         header("Location: cita_registrada.php");
         exit();

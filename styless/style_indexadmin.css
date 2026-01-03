@@ -1,0 +1,83 @@
+/* Estilos para la página de administración de citas */
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  /* Cambiar el espacio de las columnas por si ocupas*/
+  th:nth-child(3), td:nth-child(3) { /* Columna Fecha */ 
+    width: 150px; /* más espacio */ 
+}
+
+  thead {
+    background: #007bff;
+    color: #fff;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {
+    background: #f1f1f1;
+  }
+
+  td a {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0 5px;
+  }
+
+ /* Botones de acción en la tabla */
+.btn-accion {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px 3px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.btn-confirmar {
+  background-color: #28a745;
+}
+
+.btn-cancelar {
+  background-color: #dc3545;
+}
+
+.btn-accion:hover {
+  opacity: 0.85;
+}
+
+  
+

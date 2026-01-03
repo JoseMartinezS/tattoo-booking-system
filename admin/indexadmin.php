@@ -14,6 +14,7 @@ if (!isset($_SESSION['admin'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Administración</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../styless/style_indexadmin.css">
 </head>
 <body>
 
@@ -48,8 +49,8 @@ if (!isset($_SESSION['admin'])) {
                   <td><?= $cita['estado'] ?></td>
                   <td>
                     <?php if ($cita['estado'] == 'pendiente'): ?>
-                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar">Confirmar</a> |
-                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar">Cancelar</a>
+                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
+                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
                     <?php else: ?>
                       -
                     <?php endif; ?>

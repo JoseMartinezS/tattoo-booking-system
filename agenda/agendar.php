@@ -28,10 +28,11 @@ $slots = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <select name="slot" id="slot" required>
         <?php foreach ($slots as $slot): ?>
           <option value="<?= $slot['id'] ?>">
-            <?= $slot['fecha'] ?> - <?= $slot['hora'] ?>
+            <?= $slot['fecha'] ?> - <?= date("g:i A", strtotime($slot['hora'])) ?>
           </option>
         <?php endforeach; ?>
       </select>
+
 
       <button type="submit">Agendar cita</button>
   </form>
