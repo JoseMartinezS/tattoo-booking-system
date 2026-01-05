@@ -1,65 +1,104 @@
-/* Estilos para la página de administración de citas */
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-    margin: 0;
-    padding: 0;
-  }
-
-  main {
-    max-width: 1000px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  h1 {
-    text-align: center;
-    color: #007bff;
-    margin-bottom: 20px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-
-  /* Cambiar el espacio de las columnas por si ocupas*/
-  th:nth-child(3), td:nth-child(3) { /* Columna Fecha */ 
-    width: 150px; /* más espacio */ 
+/* ===== Estilos generales ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
 }
 
-  thead {
-    background: #007bff;
-    color: #fff;
-  }
+main {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-  th, td {
-    padding: 12px 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-  }
+h1 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+}
 
-  tr:hover {
-    background: #f1f1f1;
-  }
+/* ===== Resumen ===== */
+.resumen {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
 
-  td a {
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    font-size: 14px;
-    margin: 0 5px;
-  }
+.resumen .card {
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+}
 
- /* Botones de acción en la tabla */
+.resumen .pendiente { background: #ffc107; }
+.resumen .confirmada { background: #28a745; }
+.resumen .cancelada { background: #dc3545; }
+
+/* ===== Tabs ===== */
+.tabs {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tabs .tab {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px 18px;
+  background: #e9ecef;
+  color: #333;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.tabs .tab:hover {
+  background: #d6d6d6;
+}
+
+.tabs .active {
+  background: #007bff;
+  color: #fff;
+}
+
+/* ===== Tabla de citas ===== */
+main table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+main table thead {
+  background: #007bff;
+  color: #fff;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  word-wrap: break-word;
+}
+
+/* Ajustar ancho de columnas */
+th:nth-child(1), td:nth-child(1) { width: 150; } /* Correo */
+
+th:nth-child(2), td:nth-child(2) { width: 220px; } /* Correo */
+th:nth-child(3), td:nth-child(3) { width: 120px; } /* Fecha */
+th:nth-child(4), td:nth-child(4) { width: 110px; } /* Hora */
+th:nth-child(6), td:nth-child(6) { width: 110px; } /* Acciones */
+
+/* Botones de acción */
 .btn-accion {
   display: inline-block;
-  padding: 6px 12px;
-  margin: 4px 3px;
+  padding: 8px 14px;
+  margin: 5px;
   border-radius: 5px;
   font-size: 14px;
   text-decoration: none;
@@ -67,17 +106,85 @@
   transition: background 0.3s ease;
 }
 
-.btn-confirmar {
-  background-color: #28a745;
+.btn-confirmar { background-color: #28a745; }
+.btn-cancelar { background-color: #dc3545; }
+
+.btn-accion:hover { opacity: 0.85; }
+
+/* ===== Contenedor del calendario ===== */
+#calendar {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.btn-cancelar {
-  background-color: #dc3545;
+/* ===== Vista mensual (dayGridMonth) ===== */
+#calendar .fc-dayGridMonth-view .fc-daygrid-day {
+  width: 14.28%; /* 100% dividido en 7 columnas */
 }
 
-.btn-accion:hover {
-  opacity: 0.85;
+#calendar .fc-dayGridMonth-view .fc-col-header-cell {
+  width: 14.28%;
+  background: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  box-sizing: border-box;
+}
+#calendar .fc-dayGridMonth-view .fc-col-header-cell:last-child {
+  border-right: none;
 }
 
-  
+.fc-daygrid-event {
+  margin: 4px 0;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.fc-daygrid-event:hover {
+  filter: brightness(0.95);
+}
+
+/* ===== Vista semanal CORRECTA ===== */
+
+/* Header días */
+#calendar .fc-timeGridWeek-view .fc-col-header-cell {
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Columna de horas */
+#calendar .fc-timegrid-axis {
+  width: 60px;
+}
+
+/* Bordes */
+#calendar .fc-timegrid-slot {
+  border-bottom: 1px solid #eee;
+}
+
+/* Evita desfase por scrollbar */
+#calendar .fc-scrollgrid {
+  border: none;
+}
+
+/* Eventos */
+.fc-timegrid-event {
+  border-radius: 6px;
+  padding: 4px;
+  font-size: 13px;
+}
+
+
+
+
 

@@ -17,3 +17,25 @@ document.querySelectorAll('.carousel').forEach(carousel => {
     showSlide(current);
   });
 });
+
+// Calendario con FullCalendar
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  if (!calendarEl) return; // si no estamos en la vista calendario, salimos
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'es',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    stickyHeaderDates: true, // <--- clave
+    events: window.citasEventos || []
+  });
+
+  calendar.render();
+});
+
+
