@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Cliente
         $mail->addAddress($email, $nombre);
         $mail->isHTML(true);
-        $mail->Subject = 'Confirmación de cita - Estudio Miguel';
+        $mail->Subject = 'Confirmacion de cita - Estudio Miguel';
         $mail->Body = "
         <html>
         <head>

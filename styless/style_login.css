@@ -1,0 +1,67 @@
+/* ===== Login ===== */
+.contenedor {
+  max-width: 400px;
+  margin: 80px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contenedor h1 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.contenedor form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+.contenedor input {
+  padding: 10px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.contenedor input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.contenedor button {
+  background: #007bff;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contenedor button:hover {
+  background: #0056b3;
+}
+
+.error {
+  color: #dc3545;
+  background: #f8d7da;
+  border: 1px solid #f5c2c7;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}

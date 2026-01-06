@@ -31,24 +31,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Admin</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../styless/style_login.css">
 </head>
 <body>
 
   <?php include '../includes/header.php'; ?>
 
   <main class="contenedor">
-    <h1>Acceso al Panel</h1>
-    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="POST">
-      <label for="usuario">Usuario:</label>
-      <input type="text" id="usuario" name="usuario" required>
-      <br>
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" name="password" required>
-      <br>
-      <button type="submit">Ingresar</button>
-    </form>
+  <h1>Acceso al Panel</h1>
+  <?php if (!empty($error)) echo "<div class='error'>$error</div>"; ?>
+  <form method="POST">
+    <label for="usuario">Usuario</label>
+    <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required>
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+
+    <button type="submit">Ingresar</button>
+  </form>
   </main>
+
 
   <?php include '../includes/footer.php'; ?>
 
