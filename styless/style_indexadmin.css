@@ -110,78 +110,7 @@ th:nth-child(6), td:nth-child(6) { width: 110px; } /* Acciones */
 
 .btn-accion:hover { opacity: 0.85; }
 
-/* ===== Contenedor del calendario ===== */
-#calendar {
-  max-width: 1000px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
 
-/* ===== Vista mensual (dayGridMonth) ===== */
-#calendar .fc-dayGridMonth-view .fc-daygrid-day {
-  width: 14.28%; /* 100% dividido en 7 columnas */
-}
-
-#calendar .fc-dayGridMonth-view .fc-col-header-cell {
-  width: 14.28%;
-  background: #007bff;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  font-weight: bold;
-  border-right: 1px solid rgba(255,255,255,0.2);
-  box-sizing: border-box;
-}
-#calendar .fc-dayGridMonth-view .fc-col-header-cell:last-child {
-  border-right: none;
-}
-
-.fc-daygrid-event {
-  margin: 4px 0;
-  padding: 4px 6px;
-  border-radius: 4px;
-  font-size: 13px;
-  line-height: 1.2;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-.fc-daygrid-event:hover {
-  filter: brightness(0.95);
-}
-
-/* ===== Vista semanal CORRECTA ===== */
-
-/* Header días */
-#calendar .fc-timeGridWeek-view .fc-col-header-cell {
-  background: #007bff;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Columna de horas */
-#calendar .fc-timegrid-axis {
-  width: 60px;
-}
-
-/* Bordes */
-#calendar .fc-timegrid-slot {
-  border-bottom: 1px solid #eee;
-}
-
-/* Evita desfase por scrollbar */
-#calendar .fc-scrollgrid {
-  border: none;
-}
-
-/* Eventos */
-.fc-timegrid-event {
-  border-radius: 6px;
-  padding: 4px;
-  font-size: 13px;
-}
 
 
 

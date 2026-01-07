@@ -33,7 +33,6 @@ $vista = $_GET['vista'] ?? 'todas';
   <title>Panel de Administración</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../styless/style_indexadmin.css">
-
   <!-- FullCalendar CSS -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 </head>
@@ -57,69 +56,44 @@ $vista = $_GET['vista'] ?? 'todas';
       <a href="?estado=confirmada&vista=todas" class="tab <?= $estado=='confirmada' && $vista!='calendario' ? 'active' : '' ?>">Confirmadas</a>
       <a href="?estado=cancelada&vista=todas" class="tab <?= $estado=='cancelada' && $vista!='calendario' ? 'active' : '' ?>">Canceladas</a>
       <a href="?vista=todas" class="tab <?= $estado=='' && $vista!='calendario' ? 'active' : '' ?>">Todas</a>
-      <a href="?vista=calendario" class="tab <?= $vista=='calendario' ? 'active' : '' ?>">Calendario</a>
+      <a href="calendario.php" class="tab">Calendario</a>    
     </div>
 
-    <?php if ($vista === 'calendario'): ?>
-      <!-- Contenedor del calendario -->
-      <div id="calendar"></div>
-
-      <!-- Pasar eventos al JS -->
-      <script>
-        window.citasEventos = [
-          <?php foreach ($citas as $cita): ?>
-            {
-              title: "<?= htmlspecialchars($cita['nombre']) ?> (<?= $cita['estado'] ?>)",
-              start: "<?= date('Y-m-d\TH:i:s', strtotime($cita['fecha'].' '.$cita['hora'])) ?>",
-              color: "<?= $cita['estado']=='pendiente' ? '#ffc107' : ($cita['estado']=='confirmada' ? '#28a745' : '#dc3545') ?>"
-            },
-          <?php endforeach; ?>
-        ];
-      </script>
-    <?php else: ?>
-      <!-- Tabla -->
+    
       <table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Correo</th>
-      <th>Teléfono</th> <!-- nuevo -->
-      <th>Fecha</th>
-      <th>Hora</th>
-      <th>Estado</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($citas as $cita): ?>
-      <tr>
-        <td><?= htmlspecialchars($cita['nombre']) ?></td>
-        <td><?= htmlspecialchars($cita['email']) ?></td>
-        <td><?= htmlspecialchars($cita['telefono']) ?></td> <!-- nuevo -->
-        <td><?= date("d/m/Y", strtotime($cita['fecha'])) ?></td>
-        <td><?= date("g:i A", strtotime($cita['hora'])) ?></td>
-        <td><?= $cita['estado'] ?></td>
-        <td>
-          <?php if ($cita['estado'] == 'pendiente'): ?>
-            <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
-            <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
-          <?php else: ?>
-            -
-          <?php endif; ?>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
-
-    <?php endif; ?>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th> <!-- nuevo -->
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+          <tbody>
+            <?php foreach ($citas as $cita): ?>
+              <tr>
+                <td><?= htmlspecialchars($cita['nombre']) ?></td>
+                <td><?= htmlspecialchars($cita['email']) ?></td>
+                <td><?= htmlspecialchars($cita['telefono']) ?></td> <!-- nuevo -->
+                <td><?= date("d/m/Y", strtotime($cita['fecha'])) ?></td>
+                <td><?= date("g:i A", strtotime($cita['hora'])) ?></td>
+                <td><?= $cita['estado'] ?></td>
+                <td>
+                  <?php if ($cita['estado'] == 'pendiente'): ?>
+                    <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
+                    <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
+                  <?php else: ?>
+                    -
+                  <?php endif; ?>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+      </table>
   </main>
-
   <?php include '../includes/footer.php'; ?>
-
-  <!-- FullCalendar JS -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <!-- Tu script (después de definir window.citasEventos) -->
-  <script src="../js/script.js?v=1.0"></script>
 </body>
 </html>
