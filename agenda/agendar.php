@@ -24,6 +24,10 @@ $slots = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <label for="email">Correo:</label>
       <input type="email" id="email" name="email" required>
 
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" required>
+
+
       <label for="slot">Selecciona fecha y hora:</label>
       <select name="slot" id="slot" required>
         <?php foreach ($slots as $slot): ?>

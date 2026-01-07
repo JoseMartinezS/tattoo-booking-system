@@ -79,36 +79,39 @@ $vista = $_GET['vista'] ?? 'todas';
     <?php else: ?>
       <!-- Tabla -->
       <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($citas as $cita): ?>
-            <tr>
-              <td><?= htmlspecialchars($cita['nombre']) ?></td>
-              <td><?= htmlspecialchars($cita['email']) ?></td>
-              <td><?= date("d/m/Y", strtotime($cita['fecha'])) ?></td>
-              <td><?= date("g:i A", strtotime($cita['hora'])) ?></td>
-              <td><?= $cita['estado'] ?></td>
-              <td>
-                <?php if ($cita['estado'] == 'pendiente'): ?>
-                  <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
-                  <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
-                <?php else: ?>
-                  -
-                <?php endif; ?>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Teléfono</th> <!-- nuevo -->
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($citas as $cita): ?>
+      <tr>
+        <td><?= htmlspecialchars($cita['nombre']) ?></td>
+        <td><?= htmlspecialchars($cita['email']) ?></td>
+        <td><?= htmlspecialchars($cita['telefono']) ?></td> <!-- nuevo -->
+        <td><?= date("d/m/Y", strtotime($cita['fecha'])) ?></td>
+        <td><?= date("g:i A", strtotime($cita['hora'])) ?></td>
+        <td><?= $cita['estado'] ?></td>
+        <td>
+          <?php if ($cita['estado'] == 'pendiente'): ?>
+            <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
+            <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
+          <?php else: ?>
+            -
+          <?php endif; ?>
+        </td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+
     <?php endif; ?>
   </main>
 

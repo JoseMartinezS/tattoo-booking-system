@@ -6,6 +6,7 @@ include '../includes/conexion_correo.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'] ?? null;
     $email  = $_POST['email'] ?? null;
+    $telefono = $_POST['telefono'] ?? null;
     $slotId = $_POST['slot'] ?? null;
 
     $descripcion = null;
@@ -24,15 +25,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hora  = $slot['hora'];
 
         // Insertar cita
-        $stmt = $pdo->prepare("INSERT INTO citas (nombre, email, fecha, hora, descripcion) 
-                               VALUES (:nombre, :email, :fecha, :hora, :descripcion)");
+        $stmt = $pdo->prepare("INSERT INTO citas (nombre, email, telefono, fecha, hora, descripcion) 
+                       VALUES (:nombre, :email, :telefono, :fecha, :hora, :descripcion)");
         $stmt->execute([
             ':nombre' => $nombre,
             ':email' => $email,
+            ':telefono' => $telefono,
             ':fecha' => $fecha,
             ':hora' => $hora,
             ':descripcion' => $descripcion
         ]);
+
 
         // Marcar el slot como ocupado
         $stmt = $pdo->prepare("UPDATE disponibilidad SET disponible = 0 WHERE id = :id");
@@ -84,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <table border='1' cellpadding='8' cellspacing='0'>
             <tr><td><b>Nombre</b></td><td>$nombre</td></tr>
             <tr><td><b>Correo</b></td><td>$email</td></tr>
+            <tr><td><b>Teléfono</b></td><td>$telefono</td></tr>
             <tr><td><b>Fecha</b></td><td>".date("d/m/Y", strtotime($fecha))."</td></tr>
             <tr><td><b>Hora</b></td><td>".date("g:i A", strtotime($hora))."</td></tr>
             </table>
