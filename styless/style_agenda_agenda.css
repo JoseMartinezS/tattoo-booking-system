@@ -20,6 +20,7 @@ form#agendaForm label {
 /* Inputs */
 form#agendaForm input[type="text"],
 form#agendaForm input[type="email"],
+form#agendaForm input[type="tel"],
 form#agendaForm input[type="date"],
 form#agendaForm input[type="time"] {
   width: 100%;

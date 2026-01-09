@@ -32,7 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     stickyHeaderDates: true, // <--- clave
-    events: window.citasEventos || []
+    events: window.citasEventos || [],
+
+    eventClick: function(info) {
+      abrirModal(info.event.id);
+    }
+    
   });
 
   calendar.render();

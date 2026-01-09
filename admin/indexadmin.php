@@ -43,6 +43,10 @@ $vista = $_GET['vista'] ?? 'todas';
   <main>
     <h1>Panel de Administración</h1>
 
+    <div class="acciones-panel">
+    <a href="disponibilidad.php" class="btn-disponibilidad">Gestionar Disponibilidad</a>
+    </div>
+
     <!-- Resumen -->
     <div class="resumen">
       <div class="card pendiente">Pendientes: <?= $totalPendientes ?></div>

@@ -89,6 +89,15 @@
   </div>
 </section>
 
+<script>
+document.addEventListener("keydown", function(event) {
+  if (event.ctrlKey && event.altKey && event.shiftKey && event.key.toLowerCase() === "x") {
+    event.preventDefault();
+    window.location.href = "admin/login.php";
+  }
+});
+</script>
+
 
   <?php include 'includes/footer.php'; ?>
 </body>

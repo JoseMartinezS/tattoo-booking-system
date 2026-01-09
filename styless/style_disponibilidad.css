@@ -124,3 +124,19 @@ main table td a:hover {
   background: #c82333;
 }
 
+.btn-volver {
+  display: inline-block;
+  margin: 15px 0;
+  padding: 8px 14px;
+  background-color: #6c757d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-top: auto;
+}
+
+.btn-volver:hover {
+  background-color: #5a6268;
+}
+

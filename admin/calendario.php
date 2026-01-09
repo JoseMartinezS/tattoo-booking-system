@@ -17,6 +17,7 @@ $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <!-- CSS general -->
   <link rel="stylesheet" href="../style.css">
   <!-- CSS específico del calendario -->
+  <link rel="stylesheet" href="../styless/style_modal.css">
   <link rel="stylesheet" href="../styless/style_calendario.css">
 </head>
 <body>
@@ -28,7 +29,10 @@ $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="indexadmin.php" class="volver-panel">← Volver al Panel de Administración</a>
 
     <div id="calendar"></div>
+
   </main>
+  <?php include 'modal_cita.php'; ?>
+
 
   <?php include '../includes/footer.php'; ?>
 
@@ -48,5 +52,7 @@ $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <!-- FullCalendar JS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <script src="../js/script.js?v=1.0"></script>
+  <script src="../js/modal.js"></script>
+
 </body>
 </html>

@@ -45,6 +45,7 @@ $slots = $stmt->fetchAll(PDO::FETCH_ASSOC);
   
   <main>
     <h1>Gestionar Disponibilidad</h1>
+    <a href="indexadmin.php" class="btn-volver">← Volver al Panel</a>
     <form method="POST">
       <label>Fecha:</label>
       <input type="date" name="fecha" required>
