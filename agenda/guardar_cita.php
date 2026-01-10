@@ -8,10 +8,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email  = $_POST['email'] ?? null;
     $telefono = $_POST['telefono'] ?? null;
     $slotId = $_POST['slot'] ?? null;
+    $token = $_POST['token'] ?? null;
 
     $descripcion = null;
 
     try {
+        //Validar token
+        $stmt = $pdo->prepare("SELECT * FROM tokens WHERE token = :token AND expira > NOW() AND usado = 0");
+        $stmt->execute([':token' => $token]);
+        $row = $stmt->fetch();
+
+        if (!$row) {
+            die("❌ Este enlace ya no es válido.");
+        }
+
         // Obtener fecha y hora del slot seleccionado
         $stmt = $pdo->prepare("SELECT fecha, hora FROM disponibilidad WHERE id = :id AND disponible = 1");
         $stmt->execute([':id' => $slotId]);

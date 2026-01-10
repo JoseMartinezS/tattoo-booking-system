@@ -45,6 +45,7 @@ $vista = $_GET['vista'] ?? 'todas';
 
     <div class="acciones-panel">
     <a href="disponibilidad.php" class="btn-disponibilidad">Gestionar Disponibilidad</a>
+    <a href="generar_token.php" class="btn-compartir">Generar enlace de agendado</a>
     </div>
 
     <!-- Resumen -->
@@ -87,10 +88,10 @@ $vista = $_GET['vista'] ?? 'todas';
                 <td><?= $cita['estado'] ?></td>
                 <td>
                   <?php if ($cita['estado'] == 'pendiente'): ?>
-                    <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
-                    <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
-                  <?php else: ?>
-                    -
+                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
+                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
+                    
+                      —
                   <?php endif; ?>
                 </td>
               </tr>
