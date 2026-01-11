@@ -45,6 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ':hora' => $hora,
             ':descripcion' => $descripcion
         ]);
+        // Obtener el ID de la cita recién creada 
+        $citaId = $pdo->lastInsertId(); 
+        // 👇 Marcar el token como usado y asociarlo a la cita 
+        $stmt = $pdo->prepare("UPDATE tokens SET usado = 1, cita_id = :citaId WHERE token = :token"); 
+        $stmt->execute([ 
+            ':citaId' => $citaId, 
+            ':token' => $token 
+            ]);
 
 
         // Marcar el slot como ocupado

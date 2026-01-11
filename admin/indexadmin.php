@@ -7,23 +7,7 @@ if (!isset($_SESSION['admin'])) {
 
 include '../includes/conexion.php';
 
-// Contadores de estados
-$totalPendientes = $pdo->query("SELECT COUNT(*) FROM citas WHERE estado = 'pendiente'")->fetchColumn();
-$totalConfirmadas = $pdo->query("SELECT COUNT(*) FROM citas WHERE estado = 'confirmada'")->fetchColumn();
-$totalCanceladas = $pdo->query("SELECT COUNT(*) FROM citas WHERE estado = 'cancelada'")->fetchColumn();
-
-// Filtro por estado (según tab de lista)
-$estado = $_GET['estado'] ?? '';
-if ($estado) {
-    $stmt = $pdo->prepare("SELECT * FROM citas WHERE estado = :estado ORDER BY fecha, hora");
-    $stmt->execute([':estado' => $estado]);
-} else {
-    $stmt = $pdo->query("SELECT * FROM citas ORDER BY fecha, hora");
-}
-$citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Vista seleccionada (tabla o calendario)
-$vista = $_GET['vista'] ?? 'todas';
+include '../includes/admin_consultas_citas.php'; // 👈 aquí se carga toda la lógica
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,6 +17,8 @@ $vista = $_GET['vista'] ?? 'todas';
   <title>Panel de Administración</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../styless/style_indexadmin.css">
+  <link rel="stylesheet" href="../styless/style_modal_token.css">
+
   <!-- FullCalendar CSS -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 </head>
@@ -44,8 +30,8 @@ $vista = $_GET['vista'] ?? 'todas';
     <h1>Panel de Administración</h1>
 
     <div class="acciones-panel">
-    <a href="disponibilidad.php" class="btn-disponibilidad">Gestionar Disponibilidad</a>
-    <a href="generar_token.php" class="btn-compartir">Generar enlace de agendado</a>
+      <a href="disponibilidad.php" class="btn-disponibilidad">Gestionar Disponibilidad</a>
+      <a href="#" class="btn-compartir" onclick="abrirModalToken()">Generar enlace de agendado</a>
     </div>
 
     <!-- Resumen -->
@@ -64,41 +50,78 @@ $vista = $_GET['vista'] ?? 'todas';
       <a href="calendario.php" class="tab">Calendario</a>    
     </div>
 
-    
-      <table>
-        <thead>
+    <!-- Filtros por fecha -->
+<div class="filtros-fecha">
+  <a href="?filtro=hoy" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='hoy' ? 'active' : '' ?>">Hoy</a>
+  <a href="?filtro=semana" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='semana' ? 'active' : '' ?>">Semana</a>
+  <a href="?filtro=mes" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='mes' ? 'active' : '' ?>">Mes</a>
+  <a href="?filtro=todas" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='todas' ? 'active' : '' ?>">Todas</a>
+</div>
+
+
+    <!-- Tabla -->
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($citas as $cita): ?>
           <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Teléfono</th> <!-- nuevo -->
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Estado</th>
-            <th>Acciones</th>
+            <td><?= htmlspecialchars($cita['nombre']) ?></td>
+            <td><?= htmlspecialchars($cita['email']) ?></td>
+            <td><?= htmlspecialchars($cita['telefono']) ?></td>
+            <td><?= date("d/m/Y", strtotime($cita['fecha'])) ?></td>
+            <td><?= date("g:i A", strtotime($cita['hora'])) ?></td>
+            <td><?= $cita['estado'] ?></td>
+            <td>
+              <?php if ($cita['estado'] == 'pendiente'): ?>
+                  <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
+                  <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
+              <?php endif; ?>
+            </td>
           </tr>
-        </thead>
-          <tbody>
-            <?php foreach ($citas as $cita): ?>
-              <tr>
-                <td><?= htmlspecialchars($cita['nombre']) ?></td>
-                <td><?= htmlspecialchars($cita['email']) ?></td>
-                <td><?= htmlspecialchars($cita['telefono']) ?></td> <!-- nuevo -->
-                <td><?= date("d/m/Y", strtotime($cita['fecha'])) ?></td>
-                <td><?= date("g:i A", strtotime($cita['hora'])) ?></td>
-                <td><?= $cita['estado'] ?></td>
-                <td>
-                  <?php if ($cita['estado'] == 'pendiente'): ?>
-                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
-                      <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
-                    
-                      —
-                  <?php endif; ?>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-      </table>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <div class="paginacion">
+      <?php if ($paginaActual > 1): ?>
+        <a href="?estado=<?= $estado ?>&pagina=<?= $paginaActual - 1 ?>" class="btn-paginacion">← Anterior</a>
+      <?php endif; ?>
+
+      <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+        <a href="?estado=<?= $estado ?>&pagina=<?= $i ?>" 
+           class="btn-paginacion <?= $i == $paginaActual ? 'active' : '' ?>">
+           <?= $i ?>
+        </a>
+      <?php endfor; ?>
+
+      <?php if ($paginaActual < $totalPaginas): ?>
+        <a href="?estado=<?= $estado ?>&pagina=<?= $paginaActual + 1 ?>" class="btn-paginacion">Siguiente →</a>
+      <?php endif; ?>
+    </div>
   </main>
+
   <?php include '../includes/footer.php'; ?>
+
+  <!-- Modal Token -->
+  <div id="modalToken" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModalToken()">&times;</span>
+      <h2>Enlace generado</h2>
+      <div id="modalTokenContent">Cargando...</div>
+    </div>
+  </div>
+
+  <script src="../js/modal_token.js"></script>
 </body>
 </html>
