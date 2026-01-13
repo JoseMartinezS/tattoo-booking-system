@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['admin'])) {
     exit("Acceso denegado");
 }
-include '../includes/conexion.php';
+include '../../includes/conexion.php';
 
 // Generar token único con expiración (sin cita_id)
 $token  = bin2hex(random_bytes(16));
@@ -27,6 +27,6 @@ $link = "http://localhost/web/Miguel/agenda/agendar.php?token=$token";
   <h1>Enlace para agendar</h1>
   <p>Comparte este enlace con el cliente:</p>
   <p><a href="<?= $link ?>" target="_blank"><?= $link ?></a></p>
-  <a href="indexadmin.php">← Volver al Panel</a>
+  <a href="../indexadmin.php">← Volver al Panel</a>
 </body>
 </html>

@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php'; // si usas Composer para PHPMailer
+require __DIR__ . '/../vendor/autoload.php';
 
 function crearMailer() {
     $mail = new PHPMailer(true);

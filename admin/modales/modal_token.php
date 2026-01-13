@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['admin'])) {
     exit("Acceso denegado");
 }
-include '../includes/conexion.php';
+include '../../includes/conexion.php';
 
 // Generar token único con expiración
 $token  = bin2hex(random_bytes(16));

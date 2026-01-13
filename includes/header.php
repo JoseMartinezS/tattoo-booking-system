@@ -25,7 +25,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <!-- Botón de cerrar sesión solo si está logueado -->
         <?php if (isset($_SESSION['admin'])): ?>
-          <li><a href="/web/Miguel/admin/logout.php">Cerrar sesión</a></li>
+          <li><a href="/web/Miguel/admin/auth/logout.php">Cerrar sesión</a></li>
         <?php endif; ?>
       </ul>
     </nav>

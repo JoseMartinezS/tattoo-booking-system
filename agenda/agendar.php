@@ -10,8 +10,10 @@ $stmt = $pdo->prepare("SELECT * FROM tokens WHERE token = :token AND expira > NO
 $stmt->execute([':token' => $token]); 
 $row = $stmt->fetch();
 
-if (!$row) 
-  { exit("❌ Este enlace ya no es válido."); }
+if (!$row) {
+    header("Location: token_vencido.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -93,7 +93,7 @@
 document.addEventListener("keydown", function(event) {
   if (event.ctrlKey && event.altKey && event.shiftKey && event.key.toLowerCase() === "x") {
     event.preventDefault();
-    window.location.href = "admin/login.php";
+    window.location.href = "admin/auth/login.php";
   }
 });
 </script>

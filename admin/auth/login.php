@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../includes/conexion.php'; // conexión a BD
+include '../../includes/conexion.php'; // conexión a BD
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['usuario'] ?? '';
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user && password_verify($password, $user['password'])) {
         if ($user['isadmin'] == 1) {
             $_SESSION['admin'] = $user['usuario'];
-            header("Location: indexadmin.php");
+            header("Location: ../indexadmin.php");
             exit;
         } else {
             $error = "No tienes permisos de administrador.";
@@ -30,12 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Admin</title>
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../styless/style_login.css">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styless/style_login.css">
 </head>
 <body>
 
-  <?php include '../includes/header.php'; ?>
+  <?php include '../../includes/header.php'; ?>
 
   <main class="contenedor">
   <h1>Acceso al Panel</h1>
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </main>
 
 
-  <?php include '../includes/footer.php'; ?>
+  <?php include '../../includes/footer.php'; ?>
 
 </body>
 </html>

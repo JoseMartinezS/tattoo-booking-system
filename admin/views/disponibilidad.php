@@ -4,7 +4,7 @@ if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit;
 }
-include '../includes/conexion.php';
+include '../../includes/conexion.php';
 
 // Insertar nueva disponibilidad evitando duplicados
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,15 +37,15 @@ $slots = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="UTF-8">
   <title>Disponibilidad</title>
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../styless/style_disponibilidad.css">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../styless/style_disponibilidad.css">
 </head>
 <body>
-  <?php include '../includes/header.php'; ?>
+  <?php include '../../includes/header.php'; ?>
   
   <main>
     <h1>Gestionar Disponibilidad</h1>
-    <a href="indexadmin.php" class="btn-volver">← Volver al Panel</a>
+    <a href="../indexadmin.php" class="btn-volver">← Volver al Panel</a>
     <form method="POST">
       <label>Fecha:</label>
       <input type="date" name="fecha" required>
@@ -88,15 +88,15 @@ $slots = $stmt->fetchAll(PDO::FETCH_ASSOC);
           </td>
           <td>
             <?php if ($slot['disponible']): ?>
-              <a href="toggle_disponibilidad.php?id=<?= $slot['id'] ?>" class="btn-cancelar">Marcar como no disponible</a>
+              <a href="../acciones/toggle_disponibilidad.php?id=<?= $slot['id'] ?>" class="btn-cancelar">Marcar como no disponible</a>
             <?php else: ?>
-              <a href="toggle_disponibilidad.php?id=<?= $slot['id'] ?>" class="btn-confirmar">Marcar como disponible</a>
+              <a href="../acciones/toggle_disponibilidad.php?id=<?= $slot['id'] ?>" class="btn-confirmar">Marcar como disponible</a>
             <?php endif; ?>
           </td>
         </tr>
       <?php endforeach; ?>
     </table>
   </main>
-  <?php include '../includes/footer.php'; ?>
+  <?php include '../../includes/footer.php'; ?>
 </body>
 </html>

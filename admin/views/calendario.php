@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin'])) { header("Location: login.php"); exit; }
-include '../includes/conexion.php';
+include '../../includes/conexion.php';
 
 // Cargar citas
 $stmt = $pdo->query("SELECT * FROM citas ORDER BY fecha, hora");
@@ -15,26 +15,26 @@ $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <!-- FullCalendar CSS -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
   <!-- CSS general -->
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../../style.css">
   <!-- CSS específico del calendario -->
-  <link rel="stylesheet" href="../styless/style_modal.css">
-  <link rel="stylesheet" href="../styless/style_calendario.css">
+  <link rel="stylesheet" href="../../styless/style_modal.css">
+  <link rel="stylesheet" href="../../styless/style_calendario.css">
 </head>
 <body>
-  <?php include '../includes/header.php'; ?>
+  <?php include '../../includes/header.php'; ?>
 
   <main>
     <h1>Calendario de citas</h1>
     <!-- Botón para volver -->
-    <a href="indexadmin.php" class="volver-panel">← Volver al Panel de Administración</a>
+    <a href="../indexadmin.php" class="volver-panel">← Volver al Panel de Administración</a>
 
     <div id="calendar"></div>
 
   </main>
-  <?php include 'modal_cita.php'; ?>
+  <?php include '../modales/modal_cita.php'; ?>
 
 
-  <?php include '../includes/footer.php'; ?>
+  <?php include '../../includes/footer.php'; ?>
 
   <script>
     window.citasEventos = [
@@ -51,8 +51,8 @@ $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <!-- FullCalendar JS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <script src="../js/script.js?v=1.0"></script>
-  <script src="../js/modal.js"></script>
+  <script src="../../js/script.js?v=1.0"></script>
+  <script src="../../js/modal.js"></script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@ function abrirModalToken() {
   document.getElementById('modalToken').style.display = 'block';
 
   // Cargar contenido vía AJAX desde modal_token.php
-  fetch('modal_token.php')
+  fetch('../admin/modales/modal_token.php')
     .then(response => response.text())
     .then(data => {
       document.getElementById('modalTokenContent').innerHTML = data;

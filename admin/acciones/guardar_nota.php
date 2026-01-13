@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin'])) {
     exit("Acceso denegado");
 }
 
-include '../includes/conexion.php';
+include '../../includes/conexion.php';
 
 // Validar datos recibidos
 $id   = $_POST['id']   ?? null;

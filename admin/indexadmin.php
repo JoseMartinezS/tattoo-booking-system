@@ -30,7 +30,7 @@ include '../includes/admin_consultas_citas.php'; // 👈 aquí se carga toda la 
     <h1>Panel de Administración</h1>
 
     <div class="acciones-panel">
-      <a href="disponibilidad.php" class="btn-disponibilidad">Gestionar Disponibilidad</a>
+      <a href="views/disponibilidad.php" class="btn-disponibilidad">Gestionar Disponibilidad</a>
       <a href="#" class="btn-compartir" onclick="abrirModalToken()">Generar enlace de agendado</a>
     </div>
 
@@ -47,17 +47,16 @@ include '../includes/admin_consultas_citas.php'; // 👈 aquí se carga toda la 
       <a href="?estado=confirmada&vista=todas" class="tab <?= $estado=='confirmada' && $vista!='calendario' ? 'active' : '' ?>">Confirmadas</a>
       <a href="?estado=cancelada&vista=todas" class="tab <?= $estado=='cancelada' && $vista!='calendario' ? 'active' : '' ?>">Canceladas</a>
       <a href="?vista=todas" class="tab <?= $estado=='' && $vista!='calendario' ? 'active' : '' ?>">Todas</a>
-      <a href="calendario.php" class="tab">Calendario</a>    
+      <a href="views/calendario.php" class="tab">Calendario</a>    
     </div>
 
     <!-- Filtros por fecha -->
-<div class="filtros-fecha">
-  <a href="?filtro=hoy" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='hoy' ? 'active' : '' ?>">Hoy</a>
-  <a href="?filtro=semana" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='semana' ? 'active' : '' ?>">Semana</a>
-  <a href="?filtro=mes" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='mes' ? 'active' : '' ?>">Mes</a>
-  <a href="?filtro=todas" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='todas' ? 'active' : '' ?>">Todas</a>
-</div>
-
+    <div class="filtros-fecha">
+      <a href="?filtro=hoy" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='hoy' ? 'active' : '' ?>">Hoy</a>
+      <a href="?filtro=semana" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='semana' ? 'active' : '' ?>">Semana</a>
+      <a href="?filtro=mes" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='mes' ? 'active' : '' ?>">Mes</a>
+      <a href="?filtro=todas" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='todas' ? 'active' : '' ?>">Todas</a>
+    </div>
 
     <!-- Tabla -->
     <table>
@@ -83,8 +82,8 @@ include '../includes/admin_consultas_citas.php'; // 👈 aquí se carga toda la 
             <td><?= $cita['estado'] ?></td>
             <td>
               <?php if ($cita['estado'] == 'pendiente'): ?>
-                  <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
-                  <a href="accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
+                  <a href="acciones/accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
+                  <a href="acciones/accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
               <?php endif; ?>
             </td>
           </tr>

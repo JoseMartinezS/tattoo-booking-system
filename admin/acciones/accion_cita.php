@@ -1,6 +1,6 @@
 <?php
-include '../includes/conexion.php';
-include '../includes/conexion_correo.php';
+include '../../includes/conexion.php';
+include '../../includes/conexion_correo.php';
 
 $id = $_GET['id'] ?? null;
 $accion = $_GET['accion'] ?? null;
@@ -74,7 +74,7 @@ if ($id && $accion) {
             <div class='dato'><strong>Hora:</strong> {$cita['hora']}</div>
             <div class='dato'><strong>Estado:</strong> $nuevoEstado</div>
             <div class='footer'>
-            Estudio Miguel · Confirmación automática
+            Estudio Miguel. Confirmacion automatica - Por favor, no responda a este correo.
             </div>
         </div>
         </body>
@@ -82,7 +82,7 @@ if ($id && $accion) {
         ";
     $mail->send();
 
-    header("Location: indexadmin.php");
+    header("Location: ../indexadmin.php");
     exit;
 }
 ?>
