@@ -58,38 +58,37 @@ include '../includes/admin_consultas_citas.php'; // 👈 aquí se carga toda la 
       <a href="?filtro=todas" class="btn-filtro <?= ($_GET['filtro'] ?? '')=='todas' ? 'active' : '' ?>">Todas</a>
     </div>
 
-    <!-- Tabla -->
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Correo</th>
-          <th>Teléfono</th>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($citas as $cita): ?>
-          <tr>
-            <td><?= htmlspecialchars($cita['nombre']) ?></td>
-            <td><?= htmlspecialchars($cita['email']) ?></td>
-            <td><?= htmlspecialchars($cita['telefono']) ?></td>
-            <td><?= date("d/m/Y", strtotime($cita['fecha'])) ?></td>
-            <td><?= date("g:i A", strtotime($cita['hora'])) ?></td>
-            <td><?= $cita['estado'] ?></td>
-            <td>
-              <?php if ($cita['estado'] == 'pendiente'): ?>
-                  <a href="acciones/accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar" class="btn-accion btn-confirmar">Confirmar</a>
-                  <a href="acciones/accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar" class="btn-accion btn-cancelar">Cancelar</a>
-              <?php endif; ?>
-            </td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
+    <!-- Lista de citas en tarjetas -->
+<div class="citas-lista">
+  <?php foreach ($citas as $cita): ?>
+    <div class="cita-card <?= $cita['estado'] ?>">
+      <div class="cita-header">
+        <span class="cita-nombre"><?= htmlspecialchars($cita['nombre']) ?></span>
+        <span class="cita-estado">
+          <?= $cita['estado']=='pendiente'?'🟡 Pendiente':($cita['estado']=='confirmada'?'✅ Confirmada':'❌ Cancelada') ?>
+        </span>
+      </div>
+      <div class="cita-info">
+        <p><strong>Fecha:</strong> <?= date("d/m/Y", strtotime($cita['fecha'])) ?></p>
+        <p><strong>Hora:</strong> <?= date("g:i A", strtotime($cita['hora'])) ?></p>
+      </div>
+      <div class="cita-actions">
+        <button onclick="abrirModal(<?= $cita['id'] ?>)" class="btn-detalle">👁️ Ver detalles</button>
+        <?php if ($cita['estado']=='pendiente'): ?>
+          <div class="dropdown">
+            <button class="dropbtn">⚙️ Acciones</button>
+            <div class="dropdown-content">
+              <a href="acciones/accion_cita.php?id=<?= $cita['id'] ?>&accion=confirmar">✅ Confirmar</a>
+              <a href="acciones/accion_cita.php?id=<?= $cita['id'] ?>&accion=cancelar">❌ Cancelar</a>
+            </div>
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
+  <?php endforeach; ?>
+</div>
+
+
 
     <!-- Paginación -->
     <div class="paginacion">
@@ -121,6 +120,9 @@ include '../includes/admin_consultas_citas.php'; // 👈 aquí se carga toda la 
     </div>
   </div>
 
-  <script src="../js/modal_token.js"></script>
+  <?php include 'modales/modal_cita.php'; ?>
+<script src="../js/modal.js"></script>
+<script src="../js/modal_token.js"></script>
+
 </body>
 </html>

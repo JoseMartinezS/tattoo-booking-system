@@ -1,18 +1,21 @@
-// modal.js
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modalCita");
   const closeBtn = modal.querySelector(".close");
   const modalBody = document.getElementById("modal-body");
 
+  // Detectar si estamos en admin/ o admin/views/
+  const basePath = window.location.pathname.includes("/views/")
+    ? "../"
+    : "./";
+
   // Abrir modal con datos de cita
   window.abrirModal = function(id) {
-    fetch(`../detalle_cita.php?id=${id}`)
+    fetch(`${basePath}detalle_cita.php?id=${id}`)
       .then(res => res.text())
       .then(html => {
         modalBody.innerHTML = html;
         modal.style.display = "block";
 
-        // Asignar acciones a botones
         document.getElementById("btnConfirmar").onclick = () => accionCita(id, "confirmar");
         document.getElementById("btnCancelar").onclick = () => accionCita(id, "cancelar");
         document.getElementById("btnGuardarNota").onclick = () => guardarNota(id);
@@ -27,21 +30,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Acción confirmar/cancelar
   function accionCita(id, accion) {
-    fetch(`../acciones/accion_cita.php?id=${id}&accion=${accion}`)
-      .then(() => location.reload());
+    fetch(`${basePath}acciones/accion_cita.php?id=${id}&accion=${accion}`)
+      .then(() => {
+        const msg = accion === "confirmar" ? "✅ Cita confirmada" : "❌ Cita cancelada";
+        mostrarNotificacion(msg);
+        setTimeout(() => location.reload(), 1500); // recarga después de mostrar mensaje
+      });
   }
 
   // Guardar nota
   function guardarNota(id) {
     const nota = document.getElementById("notaCita").value;
-    fetch("../acciones/guardar_nota.php", {
+    fetch(`${basePath}acciones/guardar_nota.php`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `id=${id}&nota=${encodeURIComponent(nota)}`
     }).then(() => {
-      alert("Nota guardada");
-      document.getElementById("notaCita").value = ""; // 👈 limpia el campo
+      mostrarNotificacion("📝 Nota guardada");
+      document.getElementById("notaCita").value = "";
       modal.style.display = "none";
     });
+  }
+
+  // Función para mostrar notificación visual
+  function mostrarNotificacion(texto) {
+    const notif = document.createElement("div");
+    notif.className = "notif";
+    notif.textContent = texto;
+    document.body.appendChild(notif);
+
+    setTimeout(() => notif.remove(), 2000);
   }
 });

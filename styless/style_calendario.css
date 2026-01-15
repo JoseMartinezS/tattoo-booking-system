@@ -95,3 +95,25 @@ h1 {
   padding: 4px;
   font-size: 13px;
 }
+
+.notif {
+  position: fixed;
+  top: 20px;
+  left: 46%; /* la coloca en el centro horizontal */ 
+  transform: translateX(-50%); /* corrige el centrado */
+  background: #007bff;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 9999;
+  animation: fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
