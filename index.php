@@ -1,5 +1,5 @@
 <?php 
-// index.php 
+require_once __DIR__ . '/config.php';
 // ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <?php include 'includes/header.php'; ?>
+  <?php include BASE_PATH . 'includes/header.php'; ?>
 
   <!-- Sobre nosotros -->
   <section id="sobre-nosotros">
@@ -99,6 +99,6 @@ document.addEventListener("keydown", function(event) {
 </script>
 
 
-  <?php include 'includes/footer.php'; ?>
+  <?php include BASE_PATH . 'includes/footer.php'; ?>
 </body>
 </html>
