@@ -2,30 +2,27 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once __DIR__ . '/../config.php'; // ajusta según la ubicación del header.php
 ?>
 
 <!-- Header -->
 <header>
   <div class="container header-inner" role="navigation" aria-label="Navegación principal">
     <div class="logo">
-        <a href="/web/Miguel/index.php">
-          <img src="/web/Miguel/images/logomiguel.jpg" alt="Logo Miguel">
+        <a href="<?= BASE_URL ?>index.php">
+          <img src="<?= BASE_URL ?>images/logomiguel.jpg" alt="Logo Miguel">
         </a>
-      </div>
+    </div>
 
     <nav>
       <ul>
-        <!-- Mantener la cotización -->
-        <li><a href="cotizacion/cotizacion.php">Cotiza tu tatuaje</a></li>
-
-        <!-- Redes sociales -->
+        <li><a href="<?= BASE_URL ?>cotizacion/cotizacion.php">Cotiza tu tatuaje</a></li>
         <li><a href="https://www.facebook.com/tupagina" target="_blank">Facebook</a></li>
         <li><a href="https://www.instagram.com/tupagina" target="_blank">Instagram</a></li>
         <li><a href="https://wa.me/528661365505" target="_blank">WhatsApp</a></li>
 
-        <!-- Botón de cerrar sesión solo si está logueado -->
         <?php if (isset($_SESSION['admin'])): ?>
-          <li><a href="/web/Miguel/admin/auth/logout.php">Cerrar sesión</a></li>
+          <li><a href="<?= BASE_URL ?>admin/auth/logout.php">Cerrar sesión</a></li>
         <?php endif; ?>
       </ul>
     </nav>
