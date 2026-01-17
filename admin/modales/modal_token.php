@@ -15,7 +15,14 @@ $stmt->execute([
     ':expira'  => $expira
 ]);
 
-$link = "http://localhost/web/Miguel/agenda/agendar.php?token=$token";
+$protocolo = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+$host      = $_SERVER['HTTP_HOST'];
+$uri       = rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); // ej. /web/Miguel/admin/modales
+
+// Subir desde /admin/... al raíz del proyecto (/web/Miguel) y apuntar a /agenda/agendar.php
+$base = preg_replace('#/admin(/.*)?$#', '', $uri);
+$link = "$protocolo://$host$base/agenda/agendar.php?token=$token";
+
 
 echo "<p>Comparte este enlace con el cliente:</p>";
 echo "<div class='copy-container'>
