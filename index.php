@@ -99,5 +99,7 @@ document.addEventListener("keydown", function(event) {
 </script>
 
   <?php include BASE_PATH . 'includes/footer.php'; ?>
+  <script src="<?= BASE_URL ?>js/script.js"></script>
+
 </body>
 </html>

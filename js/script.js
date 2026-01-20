@@ -17,8 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
       current = (current - 1 + slides.length) % slides.length;
       showSlide(current);
     });
+
+    showSlide(current); // asegura que el primer slide se muestre
   });
 });
+
 
 // Calendario con FullCalendar
 document.addEventListener('DOMContentLoaded', function() {
