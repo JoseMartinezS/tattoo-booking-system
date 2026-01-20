@@ -11,7 +11,7 @@ $stmt->execute([':token' => $token]);
 $row = $stmt->fetch();
 
 if (!$row) {
-    header("Location: token_vencido.php");
+    header("Location: " . BASE_URL . "admin/auth/token_vencido.php");
     exit();
 }
 ?>
