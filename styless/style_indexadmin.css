@@ -302,3 +302,79 @@ h1 {
 .resumen-tabs .calendario { background: #9b59b6; }
 .resumen-tabs .active { border: 3px solid #000; }
 
+
+
+/* ===== Responsive para indexadmin ===== */
+@media (max-width: 768px) {
+  /* Botones de acciones */
+  .acciones-panel {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .acciones-panel a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Tabs de resumen */
+  .resumen-tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .resumen-tabs .card {
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* Filtros */
+  .filtros-fecha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .btn-filtro {
+    flex: 1 1 45%;
+    text-align: center;
+  }
+
+  /* Tarjetas de citas */
+  .cita-card {
+    font-size: 14px;
+    padding: 12px;
+  }
+  .cita-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .cita-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cita-actions button,
+  .cita-actions .dropdown {
+    width: 100%;
+  }
+
+  /* Paginación */
+  .paginacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .btn-paginacion {
+    flex: 1 1 45%;
+    text-align: center;
+  }
+
+  /* Títulos */
+  h1 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}
+

@@ -217,3 +217,94 @@ main form button:hover {
   font-weight: bold;
 }
 
+/* ===== Responsive Disponibilidad ===== */
+@media (max-width: 768px) {
+  main {
+    margin: 10px auto;          /* menos margen */
+    padding: 12px;              /* menos padding */
+    max-width: 100%;            /* ocupa todo el ancho */
+  }
+
+  body {
+    font-size: 15px;            /* texto un poco más grande */
+  }
+
+  /* Formularios */
+  main form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  main form label {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+  }
+  main form input,
+  main form button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tabs .tab {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Tarjetas de slots */
+  .slot-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;              /* menos padding interno */
+  }
+  .slot-info {
+    font-size: 14px;            /* texto más legible */
+  }
+  .slot-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .slot-actions a {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Paginación */
+  .paginacion {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .btn-paginacion {
+    flex: 1 1 45%;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Títulos */
+  h1 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  h2 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+}

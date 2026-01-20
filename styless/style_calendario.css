@@ -117,3 +117,69 @@ h1 {
   90% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-10px); }
 }
+
+
+/* ===== Responsive Calendario ===== */
+@media (max-width: 768px) {
+  main {
+    margin: 10px auto;
+    padding: 12px;
+    max-width: 100%;
+  }
+
+  body {
+    font-size: 15px; /* texto más legible en móvil */
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  /* Botón volver */
+  .volver-panel {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  /* Contenedor calendario */
+  #calendar {
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  /* Cabeceras en vista mensual */
+  #calendar .fc-dayGridMonth-view .fc-col-header-cell {
+    font-size: 12px;
+    padding: 6px 0;
+  }
+
+  /* Eventos en mensual y semanal */
+  .fc-daygrid-event,
+  .fc-timegrid-event {
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 6px;
+  }
+
+  /* Vista semanal: columna de horas más compacta */
+  #calendar .fc-timegrid-axis {
+    width: 40px;
+    font-size: 12px;
+  }
+
+  /* Notificación más compacta */
+  .notif {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}
+
