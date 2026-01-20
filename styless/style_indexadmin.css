@@ -35,75 +35,6 @@ h1 {
   font-weight: bold;
 }
 
-.resumen .pendiente { background: #ffc107; }
-.resumen .confirmada { background: #28a745; }
-.resumen .cancelada { background: #dc3545; }
-
-/* ===== Tabs ===== */
-.tabs {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.tabs .tab {
-  display: inline-block;
-  margin: 0 10px;
-  padding: 10px 18px;
-  background: #e9ecef;
-  color: #333;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
-
-.tabs .tab:hover {
-  background: #d6d6d6;
-}
-
-.tabs .active {
-  background: #007bff;
-  color: #fff;
-}
-
-.cita-card {
-  background: #fff;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.cita-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.cita-info p { margin: 4px 0; font-size: 14px; }
-.cita-card.pendiente { border-left: 5px solid #ffc107; }
-.cita-card.confirmada { border-left: 5px solid #28a745; }
-.cita-card.cancelada { border-left: 5px solid #dc3545; }
-
-/* Dropdown acciones */
-.dropdown { position: relative; display: inline-block; }
-.dropbtn {
-  background: #007bff; color: #fff; padding: 8px 12px;
-  border: none; border-radius: 5px; cursor: pointer;
-}
-.dropdown-content {
-  display: none; position: absolute; background: #fff;
-  min-width: 160px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  z-index: 1; border-radius: 5px;
-}
-.dropdown-content a {
-  color: #333; padding: 10px 14px; text-decoration: none;
-  display: block;
-}
-.dropdown-content a:hover { background: #f1f1f1; }
-.dropdown:hover .dropdown-content { display: block; }
-
-
-
 /* ===== Botón Ver Detalles ===== */
 .btn-detalle {
   display: inline-block;
@@ -173,31 +104,62 @@ h1 {
   background-color: #0056b3;
 }
 
-/* ===== Paginación ===== */
-.paginacion {
-  margin-top: 20px;
-  text-align: center;
+.btn-calendario {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #17a2b8; /* un azul distinto para diferenciar */
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.btn-paginacion {
+.btn-calendario:hover {
+  background-color: #117a8b;
+}
+
+.acciones-panel {
+  display: flex;
+  gap: 10px;        /* espacio entre botones */
+  align-items: center;
+}
+
+.btn-calendario {
+  margin-left: auto; /* empuja este botón al extremo derecho */
+}
+
+
+
+.resumen .pendiente { background: #ffc107; }
+.resumen .confirmada { background: #28a745; }
+.resumen .cancelada { background: #dc3545; }
+
+/* ===== Tabs ===== */
+.tabs {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tabs .tab {
   display: inline-block;
-  margin: 0 5px;
-  padding: 6px 12px;
+  margin: 0 10px;
+  padding: 10px 18px;
   background: #e9ecef;
-  border-radius: 4px;
-  text-decoration: none;
   color: #333;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
   transition: background 0.3s ease;
 }
 
-.btn-paginacion:hover {
+.tabs .tab:hover {
   background: #d6d6d6;
 }
 
-.btn-paginacion.active {
+.tabs .active {
   background: #007bff;
   color: #fff;
-  font-weight: bold;
 }
 
 /* ===== Filtros por fecha ===== */
@@ -226,6 +188,70 @@ h1 {
   background: #007bff;
   color: #fff;
 }
+.cita-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.cita-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.cita-info p { margin: 4px 0; font-size: 14px; }
+.cita-card.pendiente { border-left: 5px solid #ffc107; }
+.cita-card.confirmada { border-left: 5px solid #28a745; }
+.cita-card.cancelada { border-left: 5px solid #dc3545; }
+
+/* Dropdown acciones */
+.dropdown { position: relative; display: inline-block; }
+.dropbtn {
+  background: #007bff; color: #fff; padding: 8px 12px;
+  border: none; border-radius: 5px; cursor: pointer;
+}
+.dropdown-content {
+  display: none; position: absolute; background: #fff;
+  min-width: 160px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1; border-radius: 5px;
+}
+.dropdown-content a {
+  color: #333; padding: 10px 14px; text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover { background: #f1f1f1; }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* ===== Paginación ===== */
+.paginacion {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn-paginacion {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 6px 12px;
+  background: #e9ecef;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.3s ease;
+}
+
+.btn-paginacion:hover {
+  background: #d6d6d6;
+}
+
+.btn-paginacion.active {
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+
 
 .notif {
   position: fixed;
@@ -249,4 +275,30 @@ h1 {
   100% { opacity: 0; transform: translateY(-10px); }
 }
 
+.resumen-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.resumen-tabs .card {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+.resumen-tabs .card:hover {
+  transform: scale(1.05);
+}
+.resumen-tabs .pendiente { background: #ffc107; }
+.resumen-tabs .confirmada { background: #28a745; }
+.resumen-tabs .cancelada { background: #dc3545; }
+.resumen-tabs .todas { background: #3498db; }
+.resumen-tabs .calendario { background: #9b59b6; }
+.resumen-tabs .active { border: 3px solid #000; }
 

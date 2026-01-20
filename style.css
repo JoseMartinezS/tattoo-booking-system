@@ -197,3 +197,47 @@
 @media (max-width: 600px) {
   .portfolio-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== Ajustes responsive ===== */
+@media (max-width: 860px) {
+  .about {
+    grid-template-columns: 1fr; /* apila texto e imagen */
+    text-align: center;
+  }
+  .about .figure {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  #contacto {
+    padding: 20px 10px;
+  }
+  #contacto .btn {
+    width: 100%; /* botón ocupa todo el ancho */
+  }
+  .section-title {
+    font-size: 1.4rem;
+  }
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 720px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    padding: 10px;
+  }
+  nav a {
+    display: block;
+    text-align: center;
+  }
+}

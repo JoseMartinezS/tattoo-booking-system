@@ -80,3 +80,21 @@ form#cotizacionForm button:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   margin-top: 100px;
 }
+
+
+@media (max-width: 768px) {
+  .cotizacion-container {
+    flex-direction: column; /* apila formulario e imagen */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .form-section, .image-section {
+    width: 100%; /* cada bloque ocupa todo el ancho */
+  }
+
+  .image-section img {
+    margin-top: 20px; /* quita el margen grande en móvil */
+    max-width: 90%;   /* que no se pegue a los bordes */
+  }
+}

@@ -18,7 +18,7 @@ require_once __DIR__ . '/../config.php'; // ajusta según la ubicación del head
       <ul>
         <li><a href="<?= BASE_URL ?>cotizacion/cotizacion.php">Cotiza tu tatuaje</a></li>
         <li><a href="https://www.facebook.com/tupagina" target="_blank">Facebook</a></li>
-        <li><a href="https://www.instagram.com/tupagina" target="_blank">Instagram</a></li>
+        <li><a href="https://www.instagram.com/miguelreyna_/" target="_blank">Instagram</a></li>
         <li><a href="https://wa.me/528661365505" target="_blank">WhatsApp</a></li>
 
         <?php if (isset($_SESSION['admin'])): ?>

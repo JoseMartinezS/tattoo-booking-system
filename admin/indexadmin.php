@@ -32,23 +32,25 @@ include '../includes/admin_consultas_citas.php'; // 👈 aquí se carga toda la 
     <div class="acciones-panel">
       <a href="views/disponibilidad.php" class="btn-disponibilidad">Gestionar Disponibilidad</a>
       <a href="#" class="btn-compartir" onclick="abrirModalToken()">Generar enlace de agendado</a>
+      <a href="views/calendario.php" class="btn-calendario">Ver Calendario</a>
     </div>
 
-    <!-- Resumen -->
-    <div class="resumen">
-      <div class="card pendiente">Pendientes: <?= $totalPendientes ?></div>
-      <div class="card confirmada">Confirmadas: <?= $totalConfirmadas ?></div>
-      <div class="card cancelada">Canceladas: <?= $totalCanceladas ?></div>
+    <div class="resumen-tabs">
+      <a href="?estado=pendiente&vista=todas" class="card pendiente <?= $estado=='pendiente' ? 'active' : '' ?>">
+        🟡 Pendientes: <?= $totalPendientes ?>
+      </a>
+      <a href="?estado=confirmada&vista=todas" class="card confirmada <?= $estado=='confirmada' ? 'active' : '' ?>">
+        ✅ Confirmadas: <?= $totalConfirmadas ?>
+      </a>
+      <a href="?estado=cancelada&vista=todas" class="card cancelada <?= $estado=='cancelada' ? 'active' : '' ?>">
+        ❌ Canceladas: <?= $totalCanceladas ?>
+      </a>
+      <a href="?vista=todas" class="card todas <?= $estado=='' ? 'active' : '' ?>">
+        📋 Todas
+      </a>
+      </a>
     </div>
 
-    <!-- Tabs -->
-    <div class="tabs">
-      <a href="?estado=pendiente&vista=todas" class="tab <?= $estado=='pendiente' && $vista!='calendario' ? 'active' : '' ?>">Pendientes</a>
-      <a href="?estado=confirmada&vista=todas" class="tab <?= $estado=='confirmada' && $vista!='calendario' ? 'active' : '' ?>">Confirmadas</a>
-      <a href="?estado=cancelada&vista=todas" class="tab <?= $estado=='cancelada' && $vista!='calendario' ? 'active' : '' ?>">Canceladas</a>
-      <a href="?vista=todas" class="tab <?= $estado=='' && $vista!='calendario' ? 'active' : '' ?>">Todas</a>
-      <a href="views/calendario.php" class="tab">Calendario</a>    
-    </div>
 
     <!-- Filtros por fecha -->
     <div class="filtros-fecha">
