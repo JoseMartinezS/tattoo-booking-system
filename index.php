@@ -56,13 +56,13 @@ require_once __DIR__ . '/config.php';
       <article class="portfolio-item carousel">
         <div class="carousel-inner">
           <div class="carousel-slide active">
-            <img src="images/prueba2.png" alt="Tatuaje geométrico 1" />
+            <img src="<?= BASE_URL ?>images/prueba2.png" alt="Tatuaje geométrico 1" />
           </div>
           <div class="carousel-slide">
-            <img src="images/prueba4.png" alt="Tatuaje geométrico 2" />
+            <img src="<?= BASE_URL ?>images/prueba4.png" alt="Tatuaje geométrico 2" />
           </div>
           <div class="carousel-slide">
-            <img src="images/pruebaa.png" alt="Tatuaje geométrico 3" />
+            <img src="<?= BASE_URL ?>images/pruebaa.png" alt="Tatuaje geométrico 3" />
           </div>
         </div>
         <button class="carousel-btn prev">⟨</button>
