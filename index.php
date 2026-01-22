@@ -85,7 +85,7 @@ require_once __DIR__ . '/config.php';
   <div class="container">
     <h2 class="section-title" style="color:#fff;">Cotiza tu tatuaje</h2>
     <p>Antes de agendar, solicita tu cotización personalizada.</p>
-    <a href="cotizacion.html" class="btn">Ir a cotización</a>
+    <a href="<?= BASE_URL ?>cotizacion/cotizacion.php" class="btn">Ir a cotización</a>
   </div>
 </section>
 

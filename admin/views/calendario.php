@@ -1,12 +1,19 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin'])) { header("Location: login.php"); exit; }
+require_once __DIR__ . '/../../config.php'; // carga BASE_URL y BASE_PATH
+
+if (!isset($_SESSION['admin'])) {
+    header("Location: " . BASE_URL . "admin/auth/login.php");
+    exit;
+}
+
 include '../../includes/conexion.php';
 
 // Cargar citas
 $stmt = $pdo->query("SELECT * FROM citas ORDER BY fecha, hora");
 $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -27,11 +27,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#007bff">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Admin</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../styless/style_login.css">
+
+  <script> 
+  if ("serviceWorker" in navigator) 
+    { navigator.serviceWorker.register("/sw.js") 
+    .then(() => console.log("Service Worker registrado")) 
+    .catch(err => console.error("Error SW:", err));
+    } 
+    </script>
 </head>
 <body>
 

@@ -65,3 +65,38 @@
   margin-bottom: 15px;
   font-size: 14px;
 }
+
+/* ===== Responsive Login ===== */
+@media (max-width: 600px) {
+  .contenedor {
+    max-width: 95%;      /* ocupa casi todo el ancho */
+    margin: 40px auto;   /* menos margen superior */
+    padding: 20px;       /* padding más compacto */
+  }
+
+  .contenedor h1 {
+    font-size: 1.4rem;   /* título más pequeño */
+    margin-bottom: 20px;
+  }
+
+  .contenedor label {
+    font-size: 0.9rem;   /* etiquetas más legibles en móvil */
+  }
+
+  .contenedor input {
+    font-size: 16px;     /* tamaño cómodo para teclado móvil */
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .contenedor button {
+    width: 100%;         /* botón ocupa todo el ancho */
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .error {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
