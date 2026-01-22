@@ -25,6 +25,7 @@ require_once __DIR__ . '/../config.php'; // ajusta según la ubicación del head
         <li><a href="https://wa.me/528661365505" target="_blank">WhatsApp</a></li>
 
         <?php if (isset($_SESSION['admin'])): ?>
+          <li><a href="<?= BASE_URL ?>admin/indexadmin.php">Panel</a></li>
           <li><a href="<?= BASE_URL ?>admin/auth/logout.php">Cerrar sesión</a></li>
         <?php endif; ?>
       </ul>
